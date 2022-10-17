@@ -1,4 +1,4 @@
-package latihan-moq
+package main
 
 import "fmt"
 
