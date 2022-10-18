@@ -30,3 +30,29 @@ func Test_isAngka(t *testing.T) {
 		})
 	}
 }
+
+func Test_isVocal(t *testing.T) {
+	type args struct {
+		param string
+	}
+	tests := []struct {
+		name string
+		args args
+		want bool
+	}{
+		// TODO: Add test cases.
+		{name: "vocal ",
+			args: args{param: "a"},
+			want: true},
+		{name: "bukan vocal ",
+			args: args{param: "b"},
+			want: false},
+	}
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := isVocal(tt.args.param); got != tt.want {
+				t.Errorf("isVocal() = %v, want %v", got, tt.want)
+			}
+		})
+	}
+}
