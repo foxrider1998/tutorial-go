@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"strings"
 )
 
 var angka = []string{"1", "2", "3", "4", "5", "6", "7", "8", "9", "0"}
@@ -11,13 +12,23 @@ var text string
 func main() {
 
 	text = "b"
-	if isVocal(text) {
-		fmt.Println("vocal")
-	} else {
-		if isAngka(text) {
-			fmt.Println("error bukan huruf")
+
+	if iskata(text) {
+		if ispolindrone(text) {
+			fmt.Println("polindrone")
 		} else {
-			fmt.Println("konsonan")
+			fmt.Println("not polindrone")
+		}
+	} else {
+
+		if isVocal(text) {
+			fmt.Println("vocal")
+		} else {
+			if isAngka(text) {
+				fmt.Println("error bukan huruf")
+			} else {
+				fmt.Println("konsonan")
+			}
 		}
 	}
 
@@ -45,17 +56,26 @@ func isVocal(param string) bool {
 	return (apaVocal)
 }
 
-// func ispolindrone(input string) bool {
-// 	input = strings.ToLower(input)
-// 	apaPolindrone := true
-// 	for i := 0; i < len(input)/2; i++ {
-// 		awal := string(input[i])
-// 		akhir := string(input[(len(input) - 1 - i)])
+func iskata(param string) bool {
+	if len(param) > 1 {
+		return true
+	}
+	return false
 
-// 		if awal != akhir {
-// 			return apaPolindrone == false
-// 		}
+}
 
-// 	}
-// 	return true
-// }
+func ispolindrone(input string) bool {
+	input = strings.ToLower(input)
+	apaPolindrone := true
+
+	for i := 0; i < len(input)/2; i++ {
+		awal := string(input[i])
+		akhir := string(input[(len(input) - 1 - i)])
+
+		if awal != akhir {
+			return apaPolindrone == false
+		}
+
+	}
+	return apaPolindrone == true
+}
